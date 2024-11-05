@@ -5,6 +5,7 @@ resource "aws_instance" "app_server" {
   associate_public_ip_address = true
   user_data                   = file("${path.module}/../../scripts/add-users.yaml")
   key_name                    = var.key_name
+  depends_on = [ var.aws_internet_gateway.gw ]
   tags = merge(
     var.additional_tags
   )
