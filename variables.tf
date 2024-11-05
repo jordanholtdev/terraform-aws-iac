@@ -21,7 +21,7 @@ variable "ami_id" {
 
 }
 
-variable "key_name" {
+variable "ec2_key_name" {
   description = "The name of the key pair."
   type        = string
 
