@@ -15,7 +15,7 @@ resource "aws_subnet" "public" {
 
     availability_zone = data.aws_availability_zones.available.names[0]
     
-        tags = {
-            Name = "public"
-        }
+    tags = merge(
+        var.additional_tags,
+    )
 }

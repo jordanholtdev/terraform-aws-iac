@@ -14,3 +14,10 @@ variable "db_username" {
 variable "db_password" {
     description = "Password for the database"
 }
+
+variable "additional_tags" {
+    description = "Additional tags for the resources"
+    type = map(string)
+    default = {}
+  
+}

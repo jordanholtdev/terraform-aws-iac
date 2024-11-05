@@ -9,3 +9,10 @@ variable "ami_id" {
 variable "aws_subnet_id" {
   description = "ID of the subnet"
 }
+
+variable "additional_tags" {
+  description = "Additional tags for the EC2 instance"
+  type = map(string)
+  default = {}
+}
+

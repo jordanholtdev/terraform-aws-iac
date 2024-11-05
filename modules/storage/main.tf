@@ -11,7 +11,9 @@ resource "aws_db_instance" "default" {
   
   skip_final_snapshot= true
   
-  tags               = { Name = var.db_name }
+  tags = merge(
+    var.additional_tags
+  )
 }
 
 
