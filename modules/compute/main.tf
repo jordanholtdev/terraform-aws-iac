@@ -3,8 +3,8 @@ resource "aws_instance" "app_server" {
   instance_type = var.instance_type
   subnet_id     = var.aws_subnet_id
   associate_public_ip_address = true 
-  user_data = file("../../scripts/add-users.yaml")
-  tags = {
-    Name = "App Server"
-  }
+  user_data = file("${path.module}/../../scripts/add-users.yaml")
+  tags = merge(
+    var.additional_tags
+  )
 }

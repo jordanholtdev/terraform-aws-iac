@@ -44,3 +44,17 @@ variable "db_password" {
     type = string
   
 }
+
+variable "environment" {
+    description = "The environment for the resources."
+    type = string
+    default = "development"
+  
+}
+
+variable "team" {
+    description = "The team responsible for the resources."
+    type = string
+    default = "devops"
+  
+}
