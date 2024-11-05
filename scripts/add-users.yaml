@@ -1,0 +1,38 @@
+# cloud-config
+# Add groups and users
+# Adds the admin group with member "root" and "sys"
+# Adds empty group "cloud-users"
+
+groups: 
+  - admin [root, sys]
+  - cloud-users 
+
+# Add users after groups have been created 
+users:
+  - default 
+  - name: jholt
+    gecos: jholt
+    primary-group: cloud-users
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: users, admin
+    lock-passwd: false
+    passwd: $6$rounds=4096$
+    ssh_authorized_keys:
+      - ssh-rsa AAAAHHHHHH
+
+  - name: csmith
+    gecos: Ms. Smith
+    homedir: /local/testdir
+    sudo: ["ALL=(ALL) NOPASSWD:ALL"]
+
+package_update: true
+package_upgrade: true
+
+packages:
+  - git
+  - nginx 
+
+runcmd:
+  - echo "<html><body><h1>Test Page</h1></body></html>" > /usr/share/nginx/html/index.html
+  - systemctl start nginx
+  - systemctl enable nginx
