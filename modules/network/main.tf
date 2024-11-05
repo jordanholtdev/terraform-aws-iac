@@ -26,9 +26,9 @@ resource "aws_subnet" "public" {
   availability_zone       = data.aws_availability_zones.available.names[0]
   map_public_ip_on_launch = true
 
-  tags = merge(
-    var.additional_tags,
-  )
+  tags = {
+    Name = "subnet-${data.aws_availability_zones.available.names[0]}-{public}" 
+  }
 }
 
 resource "aws_subnet" "private" {
@@ -37,9 +37,9 @@ resource "aws_subnet" "private" {
   map_public_ip_on_launch = false
   availability_zone       = data.aws_availability_zones.available.names[0]
 
-  tags = merge(
-    var.additional_tags,
-  )
+  tags = {
+    Name = "subnet-${data.aws_availability_zones.available.names[0]}-{private}" 
+  }
 
 }
 
