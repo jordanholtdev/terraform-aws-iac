@@ -2,8 +2,8 @@ resource "aws_db_instance" "default" {
   identifier         = var.db_name
   instance_class     = var.db_instance_class
   engine             = "mysql"
-  
-  allocated_storage   = 20
+  engine_version       = "8.0"
+  allocated_storage   = 10
   
   username           = var.db_username # Add as a variable if needed.
   
