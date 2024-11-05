@@ -21,12 +21,6 @@ variable "ami_id" {
 
 }
 
-variable "ec2_key_name" {
-  description = "The name of the key pair."
-  type        = string
-
-}
-
 variable "db_instance_class" {
   description = "The instance class for the RDS instance."
   type        = string
