@@ -5,7 +5,7 @@ variable "vpc_cidr" {
 
 variable "additional_tags" {
   description = "Additional tags for the resources"
-  type = map(string)
-  default = {}
-  
+  type        = map(string)
+  default     = {}
+
 }

@@ -10,47 +10,48 @@ terraform {
 }
 
 provider "aws" {
-  region  = var.aws_region
+  region = var.aws_region
 
   default_tags {
     tags = {
       Environment = var.environment
-      Terraform = "true"
-      Team = var.team 
-      CostCenter = "foo"
+      Terraform   = "true"
+      Team        = var.team
+      CostCenter  = "foo"
     }
   }
 }
 
 module "network" {
-  source = "./modules/network"
+  source   = "./modules/network"
   vpc_cidr = var.vpc_cidr
   additional_tags = {
     Environment = var.environment
-    Name = "main"
+    Name        = "main"
   }
-  
+
 }
 
 module "compute" {
-  source = "./modules/compute"
+  source        = "./modules/compute"
   instance_type = var.instance_type
-  ami_id = var.ami_id
-  aws_subnet_id = module.network.subnet_id   
+  ami_id        = var.ami_id
+  aws_subnet_id = module.network.subnet_id
+  key_name      = var.key_name
   additional_tags = {
     Environment = var.environment
-    Name = "app-server-${var.environment}"
+    Name        = "app-server-${var.environment}"
   }
 }
 
 module "storage" {
-  source = "./modules/storage"
+  source            = "./modules/storage"
   db_instance_class = var.db_instance_class
-  db_name = var.db_name
-  db_username = var.db_username
-  db_password = var.db_password
+  db_name           = var.db_name
+  db_username       = var.db_username
+  db_password       = var.db_password
   additional_tags = {
     Environment = var.environment
-    Name = "db-${var.environment}"
+    Name        = "db-${var.environment}"
   }
 }
