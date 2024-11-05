@@ -33,11 +33,12 @@ module "network" {
 }
 
 module "compute" {
-  source        = "./modules/compute"
-  instance_type = var.instance_type
-  ami_id        = var.ami_id
-  aws_subnet_id = module.network.subnet_id
-  key_name      = var.key_name
+  source                  = "./modules/compute"
+  instance_type           = var.instance_type
+  ami_id                  = var.ami_id
+  aws_subnet_id           = module.network.subnet_id
+  ec2_key_name            = var.ec2_key_name
+  ec2_instance_depends_on = [module.network.gw_id]
   additional_tags = {
     Environment = var.environment
     Name        = "app-server-${var.environment}"
