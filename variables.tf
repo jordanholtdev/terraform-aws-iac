@@ -59,3 +59,9 @@ variable "team" {
 
 }
 
+variable "key_name" {
+  description = "The key pair name to use for the EC2 instance."
+  type        = string
+  
+}
+

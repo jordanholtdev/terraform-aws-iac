@@ -36,6 +36,7 @@ module "compute" {
   source                  = "./modules/compute"
   instance_type           = var.instance_type
   ami_id                  = var.ami_id
+  key_name                = var.key_name
   aws_subnet_id           = module.network.subnet_id
   ec2_instance_depends_on = [module.network.gw_id]
   additional_tags = {
