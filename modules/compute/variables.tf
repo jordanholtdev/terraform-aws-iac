@@ -12,7 +12,10 @@ variable "aws_subnet_id" {
 
 variable "additional_tags" {
   description = "Additional tags for the EC2 instance"
-  type = map(string)
-  default = {}
+  type        = map(string)
+  default     = {}
 }
 
+variable "key_name" {
+  description = "Name of the key pair"
+}
