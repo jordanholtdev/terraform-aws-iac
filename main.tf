@@ -23,7 +23,7 @@ module "compute" {
   source = "./modules/compute"
   instance_type = var.instance_type
   ami_id = var.ami_id
-  aws_subnet_id = module.network.public_subnet_id  
+  aws_subnet_id = module.network.subnet_id  
 }
 
 module "storage" {
