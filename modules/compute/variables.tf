@@ -16,11 +16,6 @@ variable "additional_tags" {
   default     = {}
 }
 
-variable "ec2_key_name" {
-  description = "Name of the key pair"
-  
-}
-
 variable "ec2_instance_depends_on" {
   description = "Resources that the EC2 instance depends on"
   type        = list(any)
