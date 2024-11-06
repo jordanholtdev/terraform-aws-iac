@@ -27,7 +27,7 @@ module "network" {
   vpc_cidr = var.vpc_cidr
   additional_tags = {
     Environment = var.environment
-    Name        = "main"
+    Name        = "${var.company}:${var.team}:${var.environment}:vpc:${var.project}"
   }
 
 }
@@ -42,7 +42,7 @@ module "compute" {
   aws_security_group_id = module.network.public_security_group_id
   additional_tags = {
     Environment = var.environment
-    Name        = "app-server-${var.environment}"
+    Name        = "${var.company}:${var.team}:${var.environment}:app-server:${var.project}"
   }
 }
 
@@ -55,6 +55,6 @@ module "storage" {
   subnet_ids        = [module.network.private_subnet_id, module.network.private2_subnet_id]
   additional_tags = {
     Environment = var.environment
-    Name        = "db-${var.environment}"
+    Name        = "${var.company}:${var.team}:${var.environment}:rds:${var.project}"
   }
 }
