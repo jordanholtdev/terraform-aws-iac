@@ -66,12 +66,6 @@ variable "team" {
 
 }
 
-variable "purpose" {
-  description = "The purpose of the resources."
-  type        = string
-
-}
-
 variable "project" {
   description = "The project name for the resources."
   type        = string
