@@ -27,7 +27,7 @@ resource "aws_subnet" "public" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "subnet-${data.aws_availability_zones.available.names[0]}-{public}" 
+    Name = "subnet-${data.aws_availability_zones.available.names[0]}-{public}"
   }
 }
 
@@ -38,7 +38,7 @@ resource "aws_subnet" "private" {
   availability_zone       = data.aws_availability_zones.available.names[0]
 
   tags = {
-    Name = "subnet-${data.aws_availability_zones.available.names[0]}-{private}" 
+    Name = "subnet-${data.aws_availability_zones.available.names[0]}-{private}"
   }
 
 }
@@ -55,6 +55,32 @@ resource "aws_route_table" "public" {
 resource "aws_route_table_association" "public" {
   subnet_id      = aws_subnet.public.id
   route_table_id = aws_route_table.public.id
+}
+
+resource "aws_security_group" "public" {
+  name        = "sg-public"
+  description = "security group for public subnet"
+  vpc_id      = aws_vpc.main.id
+  tags = {
+    Name = "sg-public"
+  }
+}
+
+resource "aws_vpc_security_group_ingress_rule" "allow_http" {
+  security_group_id = aws_security_group.public.id
+
+  cidr_ipv4   = "0.0.0.0/0"
+  from_port   = 80
+  ip_protocol = "tcp"
+  to_port     = 80
+}
+
+resource "aws_vpc_security_group_ingress_rule" "allow_ssh" {
+  security_group_id = aws_security_group.public.id
+
+  cidr_ipv4   = "0.0.0.0/0" # allow all for testing purposes
+  from_port   = 22
+  ip_protocol = "tcp"
 }
 
 resource "aws_route_table" "private" {
