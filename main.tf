@@ -37,7 +37,7 @@ module "compute" {
   instance_type           = var.instance_type
   ami_id                  = var.ami_id
   key_name                = var.key_name
-  aws_subnet_id           = module.network.subnet_id
+  aws_subnet_id           = module.network.public_subnet_id
   ec2_instance_depends_on = [module.network.gw_id]
   additional_tags = {
     Environment = var.environment
@@ -51,6 +51,7 @@ module "storage" {
   db_name           = var.db_name
   db_username       = var.db_username
   db_password       = var.db_password
+  subnet_ids        = [module.network.private_subnet_id, module.network.private2_subnet_id]
   additional_tags = {
     Environment = var.environment
     Name        = "db-${var.environment}"

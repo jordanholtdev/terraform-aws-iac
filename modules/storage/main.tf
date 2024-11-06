@@ -5,9 +5,9 @@ resource "aws_db_instance" "default" {
   engine_version    = "8.0"
   allocated_storage = 10
 
-  username = var.db_username # Add as a variable if needed.
+  username = var.db_username
 
-  password = var.db_password # Add as a variable if needed.
+  password = var.db_password
 
   skip_final_snapshot = true
 
@@ -17,3 +17,11 @@ resource "aws_db_instance" "default" {
 }
 
 
+resource "aws_db_subnet_group" "default" {
+  name       = "db-subnet-group"
+  subnet_ids = var.subnet_ids  
+
+  tags = {
+    Name = "My DB subnet group"
+  }
+}
