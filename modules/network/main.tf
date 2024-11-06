@@ -58,11 +58,11 @@ resource "aws_route_table_association" "public" {
 }
 
 resource "aws_security_group" "public" {
-  name        = "sg-public"
+  name        = "public"
   description = "security group for public subnet"
   vpc_id      = aws_vpc.main.id
   tags = {
-    Name = "sg-public"
+    Name = "public"
   }
 }
 
