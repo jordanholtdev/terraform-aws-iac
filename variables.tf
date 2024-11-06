@@ -45,6 +45,13 @@ variable "db_password" {
 
 }
 
+variable "company" {
+  description = "The company name for the resources."
+  type        = string
+  default     = "mycompany"
+
+}
+
 variable "environment" {
   description = "The environment for the resources."
   type        = string
@@ -59,9 +66,15 @@ variable "team" {
 
 }
 
+variable "project" {
+  description = "The project name for the resources."
+  type        = string
+  default     = "terraform-aws-iac"
+}
+
 variable "key_name" {
   description = "The key pair name to use for the EC2 instance."
   type        = string
-  
+
 }
 
