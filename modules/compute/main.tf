@@ -5,6 +5,7 @@ resource "aws_instance" "app_server" {
   key_name                    = var.key_name
   associate_public_ip_address = true
   depends_on                  = [var.ec2_instance_depends_on]
+  security_groups             = [var.aws_security_group_id]
   user_data                   = <<EOF
                               #cloud-config
                               groups:

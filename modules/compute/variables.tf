@@ -28,3 +28,9 @@ variable "key_name" {
   type        = string
   
 }
+
+variable "aws_security_group_id" {
+  description = "The security group ID for the EC2 instance"
+  type        = string
+  
+}
