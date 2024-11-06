@@ -47,10 +47,10 @@ resource "aws_subnet" "private2" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = cidrsubnet(var.vpc_cidr, 8, 2)
   map_public_ip_on_launch = false
-  availability_zone       = data.aws_availability_zones.available.names[0]
+  availability_zone       = data.aws_availability_zones.available.names[1]
 
   tags = {
-    Name = "subnet-${data.aws_availability_zones.available.names[0]}-{private}"
+    Name = "subnet-${data.aws_availability_zones.available.names[1]}-{private}"
   }
 
 }
@@ -93,6 +93,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_ssh" {
   cidr_ipv4   = "0.0.0.0/0" # allow all for testing purposes
   from_port   = 22
   ip_protocol = "tcp"
+  to_port     = 22
 }
 
 resource "aws_security_group" "db" {
@@ -110,6 +111,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_db" {
   referenced_security_group_id = aws_security_group.db.id 
   from_port = 3306
   ip_protocol = "tcp"
+  to_port = 3306
 }
 
 resource "aws_route_table" "private" {
