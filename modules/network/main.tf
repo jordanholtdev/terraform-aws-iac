@@ -87,15 +87,6 @@ resource "aws_vpc_security_group_ingress_rule" "allow_http" {
   to_port     = 80
 }
 
-resource "aws_vpc_security_group_ingress_rule" "allow_ssh" {
-  security_group_id = aws_security_group.public.id
-
-  cidr_ipv4   = "0.0.0.0/0" # allow all for testing purposes
-  from_port   = 22
-  ip_protocol = "tcp"
-  to_port     = 22
-}
-
 resource "aws_vpc_security_group_egress_rule" "allow_all" {
   security_group_id = aws_security_group.public.id
 
