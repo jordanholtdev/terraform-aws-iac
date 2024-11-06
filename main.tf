@@ -39,6 +39,7 @@ module "compute" {
   key_name                = var.key_name
   aws_subnet_id           = module.network.public_subnet_id
   ec2_instance_depends_on = [module.network.gw_id]
+  aws_security_group_id = module.network.public_security_group_id
   additional_tags = {
     Environment = var.environment
     Name        = "app-server-${var.environment}"
