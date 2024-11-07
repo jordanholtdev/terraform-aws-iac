@@ -31,8 +31,8 @@ resource "aws_instance" "app_server" {
                                 - git
                                 - nginx
                                 - python3
-                                - python3-
-                                - mysql
+                                - python3-pip
+                                - mariadb
                               runcmd:
                                 - echo "<html><h1>Hello World</h1></html>" > /usr/share/nginx/html/index.html
                                 - systemctl start nginx
