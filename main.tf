@@ -57,4 +57,5 @@ module "storage" {
     Environment = var.environment
     Name        = "${var.company}:${var.team}:${var.environment}:rds:${var.project}"
   }
+  db_security_group_id = module.network.db_security_group_id 
 }

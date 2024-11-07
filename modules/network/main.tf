@@ -107,7 +107,7 @@ resource "aws_security_group" "db" {
 resource "aws_vpc_security_group_ingress_rule" "allow_db" {
   security_group_id = aws_security_group.db.id
 
-  referenced_security_group_id = aws_security_group.db.id 
+  referenced_security_group_id = aws_security_group.public.id
   from_port = 3306
   ip_protocol = "tcp"
   to_port = 3306
