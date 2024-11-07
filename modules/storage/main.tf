@@ -4,7 +4,7 @@ resource "aws_db_instance" "default" {
   engine            = "mysql"
   engine_version    = "8.0"
   allocated_storage = 10
-  vpc_security_group_ids = var.db_security_group_id
+  vpc_security_group_ids = [var.db_security_group_id]
 
   username = var.db_username
   password = var.db_password
