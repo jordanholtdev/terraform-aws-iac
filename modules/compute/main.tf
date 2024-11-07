@@ -9,7 +9,6 @@ resource "aws_instance" "app_server" {
   user_data                   = <<EOF
                               #cloud-config
                               groups:
-                                - admin [root, sys, ec2-user]
                                 - cloud-users 
                               users:
                                 - default
@@ -29,11 +28,10 @@ resource "aws_instance" "app_server" {
                               package_upgrade: true
                               packages:
                                 - git
-                                - nginx
                                 - python3
                                 - python3-pip
-                                - mariadb
                               runcmd:
+                                - amazon-linux-extras install -y nginx1 mariadb10.5
                                 - echo "<html><h1>Hello World</h1></html>" > /usr/share/nginx/html/index.html
                                 - systemctl start nginx
                                 - systemctl enable nginx
