@@ -38,7 +38,7 @@ resource "aws_subnet" "private" {
   availability_zone       = data.aws_availability_zones.available.names[1]
 
   tags = {
-    Name = "subnet-${data.aws_availability_zones.available.names[0]}-{private}"
+    Name = "subnet-${data.aws_availability_zones.available.names[1]}-{private}"
   }
 
 }
@@ -50,7 +50,7 @@ resource "aws_subnet" "private2" {
   availability_zone       = data.aws_availability_zones.available.names[2]
 
   tags = {
-    Name = "subnet-${data.aws_availability_zones.available.names[1]}-{private}"
+    Name = "subnet-${data.aws_availability_zones.available.names[2]}-{private}"
   }
 
 }
