@@ -31,7 +31,8 @@ resource "aws_instance" "app_server" {
                                 - git
                                 - nginx
                                 - python3
-                                - python3-pip
+                                - python3-
+                                - mysql
                               runcmd:
                                 - echo "<html><h1>Hello World</h1></html>" > /usr/share/nginx/html/index.html
                                 - systemctl start nginx
