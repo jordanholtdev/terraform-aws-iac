@@ -29,13 +29,17 @@ resource "aws_instance" "app_server" {
                               packages:
                                 - git
                                 - python3
-                                - python3-pip
                               runcmd:
-                                - amazon-linux-extras install -y nginx1 mariadb10.5
-                                - echo "<html><h1>Hello World</h1></html>" > /usr/share/nginx/html/index.html
+                                - dnf install -y nginx mariadb105
                                 - systemctl start nginx
                                 - systemctl enable nginx
-                                - systemctl status nginx  
+                                - systemctl status nginx
+                                - echo "<html><h1>Hello World</h1></html>" > /usr/share/nginx/html/index.html
+                                - systemctl start mariadb
+                                - systemctl enable mariadb
+                                - systemctl status mariadb
+                                - nginx -v
+                                - mariadb --version
                               EOF
   tags = merge(
     var.additional_tags
