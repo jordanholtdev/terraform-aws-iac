@@ -35,7 +35,7 @@ resource "aws_subnet" "private" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = cidrsubnet(var.vpc_cidr, 8, 1)
   map_public_ip_on_launch = false
-  availability_zone       = data.aws_availability_zones.available.names[0]
+  availability_zone       = data.aws_availability_zones.available.names[1]
 
   tags = {
     Name = "subnet-${data.aws_availability_zones.available.names[0]}-{private}"
@@ -47,7 +47,7 @@ resource "aws_subnet" "private2" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = cidrsubnet(var.vpc_cidr, 8, 2)
   map_public_ip_on_launch = false
-  availability_zone       = data.aws_availability_zones.available.names[1]
+  availability_zone       = data.aws_availability_zones.available.names[2]
 
   tags = {
     Name = "subnet-${data.aws_availability_zones.available.names[1]}-{private}"
@@ -82,9 +82,9 @@ resource "aws_vpc_security_group_ingress_rule" "allow_http" {
   security_group_id = aws_security_group.public.id
 
   cidr_ipv4   = "0.0.0.0/0"
-  from_port   = 80
-  ip_protocol = "tcp"
-  to_port     = 80
+  from_port   = 0
+  to_port     = 0
+  ip_protocol = "-1"
 }
 
 resource "aws_vpc_security_group_egress_rule" "allow_all" {
